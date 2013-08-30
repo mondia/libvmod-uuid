@@ -42,6 +42,15 @@ UUID
                 set req.http.X-Flow-ID = "cache-" + uuid.uuid();
 
 
+DEPENDANCIES
+============
+
+Libvmod-uuid requires the OSSP uuid library to generate uuids.  It
+is available at http://www.ossp.org/pkg/lib/uuid/ or possibly as a
+prepackaged library from your linux distribution.  In the case of
+CentOS, the rpm is named uuid.
+
+
 INSTALLATION
 ============
 
@@ -78,13 +87,6 @@ In your VCL you could then use this vmod along the following lines::
                 set req.http.X-Flow-ID = "cache-" + uuid.uuid();
         }
 
-HISTORY
-=======
-
-This manual page was released as part of the libvmod-uuid package,
-demonstrating how to create an out-of-tree Varnish vmod. For further
-uuids and inspiration check the vmod directory:
- https://www.varnish-cache.org/vmods
 
 COPYRIGHT
 =========
@@ -92,4 +94,3 @@ COPYRIGHT
 This document is licensed under the same license as the
 libvmod-uuid project. See LICENSE for details.
 
-* Copyright (c) 2011 Varnish Software
