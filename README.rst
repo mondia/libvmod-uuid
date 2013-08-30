@@ -42,7 +42,7 @@ UUID
                 set req.http.X-Flow-ID = "cache-" + uuid.uuid();
 
 
-DEPENDANCIES
+DEPENDENCIES
 ============
 
 Libvmod-uuid requires the OSSP uuid library to generate uuids.  It
