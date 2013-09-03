@@ -47,8 +47,12 @@ DEPENDENCIES
 
 Libvmod-uuid requires the OSSP uuid library to generate uuids.  It
 is available at http://www.ossp.org/pkg/lib/uuid/ or possibly as a
-prepackaged library from your linux distribution.  In the case of
-CentOS, the rpm is named uuid.
+prepackaged library from your linux distribution.  i
+
+In the case of Redhat/Fedora/CentOS, the rpm is named uuid.  Ensure
+you install the rpms with the following command::
+
+   yum install -y uuid uuid-devel
 
 
 INSTALLATION
@@ -62,6 +66,7 @@ using the varnishtest tool.
 
 Usage::
 
+ ./autogen.sh
  ./configure VARNISHSRC=DIR [VMODDIR=DIR]
 
 `VARNISHSRC` is the directory of the Varnish source tree for which to
