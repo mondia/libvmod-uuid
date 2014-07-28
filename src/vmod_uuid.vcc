@@ -1,2 +1,2 @@
-Module uuid
-Function STRING uuid(PRIV_CALL)
+$Module uuid 3 UUID
+$Function STRING uuid(PRIV_CALL)

@@ -31,7 +31,7 @@
 #include <syslog.h>
 
 #include "vrt.h"
-#include "bin/varnishd/cache.h"
+#include "cache/cache.h"
 
 #include "vcc_if.h"
 
@@ -62,21 +62,21 @@ init_function(struct vmod_priv *priv, const struct VCL_conf *conf){
    return(0);
 }
 
-const char *
-vmod_uuid(struct sess *sp, struct vmod_priv *pv){
+VCL_STRING
+vmod_uuid(const struct vrt_ctx *ctx, struct vmod_priv *pv){
    char *p;
    unsigned u, v;
 
    char *uuid_str = uuid_v1();
 
-   u = WS_Reserve(sp->wrk->ws, 0);     // Reserve some work space 
+   u = WS_Reserve(ctx->ws, 0);     // Reserve some work space 
    if (sizeof(uuid_str) > u) {
       // No space, reset and leave 
-      WS_Release(sp->wrk->ws, 0);
+      WS_Release(ctx->ws, 0);
       return(NULL);
    }
 
-   p = sp->wrk->ws->f;                 // Front of workspace area 
+   p = ctx->ws->f;                 // Front of workspace area 
 
    strncpy(p, uuid_str, 37);
    // free up the uuid string once it's copied in place
@@ -88,7 +88,7 @@ vmod_uuid(struct sess *sp, struct vmod_priv *pv){
    v+=37;
 
    // Update work space with what we've used 
-   WS_Release(sp->wrk->ws, v);
+   WS_Release(ctx->ws, v);
 //   debug("uuid: %s", p);
    return(p);
 }
